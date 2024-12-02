@@ -54,20 +54,84 @@ def drop_cone():
     disk_angle = (disk_angle + 45) % 360  # Move disk by 45 degrees
     cone_count += 1
     timestamp = time.strftime('%H:%M:%S')
-    log_entry = f"Dropped cone at {disk_angle}° ({timestamp})"
+    log_entry = f"Dropped cone ({timestamp})"
     log.append(log_entry)
     print(log_entry)  # Log to the terminal
 
+# def draw_disk(surface, angle):
+#     """Draw the spinning disk."""
+#     center = (320, 240)
+#     pygame.draw.circle(surface, BLACK, center, 100, 2)
+#     # Draw 8 segments
+#     for i in range(8):
+#         theta = math.radians(i * 45 + angle)
+#         x = center[0] + 100 * math.cos(theta)
+#         y = center[1] - 100 * math.sin(theta)
+#         pygame.draw.line(surface, RED if i == 0 else BLACK, center, (x, y), 2)
+
 def draw_disk(surface, angle):
-    """Draw the spinning disk."""
-    center = (320, 240)
-    pygame.draw.circle(surface, BLACK, center, 100, 2)
-    # Draw 8 segments
-    for i in range(8):
-        theta = math.radians(i * 45 + angle)
-        x = center[0] + 100 * math.cos(theta)
-        y = center[1] - 100 * math.sin(theta)
-        pygame.draw.line(surface, RED if i == 0 else BLACK, center, (x, y), 2)
+    """
+    Draws a rotating disk with a boundary circle, 7 lines to holes, 7 holes at 45-degree intervals,
+    and a start marker to indicate the rotating direction.
+    """
+    # Create a temporary surface to hold the disk and elements
+    temp_surface = pygame.Surface((200, 200), pygame.SRCALPHA)  # A 200x200 surface with transparency
+    temp_surface.fill((0, 0, 0, 0))  # Fill with transparent background
+
+    # Disk parameters
+    center = (100, 100)  # Center of the disk (on the temporary surface)
+    outer_radius = 90  # Outer radius of the disk (scaled for the temp surface)
+    hole_radius = 15  # Radius of each hole (scaled)
+    hole_offset = outer_radius - 20  # Offset where the holes are placed (slightly inward)
+    
+    # Draw the outer boundary circle
+    pygame.draw.circle(temp_surface, BLACK, center, outer_radius + 10, 2)  # Slightly larger boundary
+    # Draw the main disk
+    pygame.draw.circle(temp_surface, BLACK, center, outer_radius, 2)
+
+    # Draw 7 lines and holes at 45-degree intervals (clockwise rotation)
+    for i in range(7):  # Only 7 lines and holes
+        theta = math.radians(-i * 45 + angle)  # Negative angle for clockwise rotation
+        line_x = center[0] + hole_offset * math.cos(theta)  # End point of the line (to the hole)
+        line_y = center[1] - hole_offset * math.sin(theta)  # Same offset for holes
+
+        # Draw the line from the center to the hole position
+        pygame.draw.line(temp_surface, BLACK, center, (int(line_x), int(line_y)), 2)
+
+        # Draw the hole at the same position
+        hole_x = center[0] + hole_offset * math.cos(theta)
+        hole_y = center[1] - hole_offset * math.sin(theta)
+        pygame.draw.circle(temp_surface, WHITE, (int(hole_x), int(hole_y)), hole_radius)
+        pygame.draw.circle(temp_surface, BLACK, (int(hole_x), int(hole_y)), hole_radius, 2)  # Hole border
+        
+        # Label each hole with a number (1 to 7)
+        hole_number_text = font_small.render(str(i + 1), True, BLACK)
+        hole_text_rect = hole_number_text.get_rect(center=(int(hole_x), int(hole_y)))
+        temp_surface.blit(hole_number_text, hole_text_rect)
+
+    # # Add a start marker (e.g., a small circle) at the "start point"
+    # start_marker_offset = outer_radius - 10  # Position the marker closer to the edge
+    # # Adjust the marker to align with the first hole (45 degree increments)
+    # marker_index = int((angle % 360) / 45)  # Find which hole the marker should align with
+    # start_marker_angle = math.radians(-marker_index * 45)  # Adjusted angle for the marker's position
+    # start_marker_x = center[0] + start_marker_offset * math.cos(start_marker_angle)
+    # start_marker_y = center[1] - start_marker_offset * math.sin(start_marker_angle)
+    # pygame.draw.circle(temp_surface, RED, (int(start_marker_x), int(start_marker_y)), 5)  # Small red circle marker
+
+    # Rotate the entire temp_surface by the given angle (negative for clockwise)
+    rotated_surface = pygame.transform.rotate(temp_surface, -angle)  # Negative for clockwise rotation
+    
+    # Get the new center of the rotated image (to center it correctly on the main screen)
+    rotated_rect = rotated_surface.get_rect(center=(320, 240))
+
+    # Blit the rotated surface onto the main screen
+    surface.blit(rotated_surface, rotated_rect.topleft)
+
+    # Display the rightmost hole number
+    rightmost_hole_index = int((angle % 360) / 45)  # The index of the rightmost hole
+    rightmost_hole_number = (rightmost_hole_index + 1)  # Hole numbers are 1-7, not 0-6
+    rightmost_text = font_big.render(str(rightmost_hole_number), True, RED)
+    surface.blit(rightmost_text, (300, 10))  # Display the number at the top right of the screen
 
 def draw_buttons():
     """Draw control buttons."""
