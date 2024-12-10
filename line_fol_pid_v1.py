@@ -1,16 +1,7 @@
 
-
-"""
-### ----------- Import Libraries here ----------------------------
-"""
-
 import time
 import RPi.GPIO as GPIO
 
-
-"""
-### ------------ SETUP --------------------------------------------
-"""
 # --- MODE --------------------------------------------------------
 GPIO.setmode(GPIO.BCM)
 # mode = GPIO.getmode()
@@ -53,6 +44,7 @@ GPIO.setup(BI_2_pin, GPIO.OUT) # Connected to BIN2
 freq = 50
 dc_0 = 0
 dc = 50
+
 # ------------ Update PWM ---------------------
 pwm_driver1 = GPIO.PWM(PWM_Apin, freq) 
 pwm_driver1.start(dc_0)
@@ -82,7 +74,7 @@ try:
 			dc_B = max(0, min(100, 25 + pid))
 			pwm_driver1.ChangeDutyCycle(dc_A)
 			pwm_driver2.ChangeDutyCycle(dc_B)
-			# print("dc_clock", dc)
+			# print("pid_Left", pid)
 			GPIO.output(AI_1_pin, GPIO.HIGH) # Set AIN1
 			GPIO.output(AI_2_pin, GPIO.LOW) # Set AIN2
 			GPIO.output(BI_1_pin, GPIO.HIGH) # Set BIN1

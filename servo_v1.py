@@ -31,7 +31,7 @@ time.sleep(1)
 print("Rotating servo in 180 degress in 5 steps")
 # code_running = True
 while dc < 12:
-    dc = dc + 1
+    dc = dc + 2
     servo_driver1.ChangeDutyCycle(dc)
     time.sleep(1)
 
@@ -40,5 +40,6 @@ while dc < 12:
 
 # --- Reset all the GPIO pins by setting them to LOW --------------------
 # finally:
+
 servo_driver1.stop()
 GPIO.cleanup()
