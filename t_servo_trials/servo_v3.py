@@ -21,7 +21,8 @@ time.sleep(1)
 # ------------ Moving servo ---------------------
 # Rotating servo from 0° to 180° in 45-degree increments
 print("Rotating servo in 45-degree steps from 0 to 180 degrees:")
-for dc_angle in [2.5, 5, 7.5, 10, 12.5]:  # Duty cycles for 0°, 45°, 90°, 135°, 180°
+#for dc_angle in [2.5, 5, 7.5, 10, 12.5]:  # Duty cycles for 0°, 45°, 90°, 135°, 180°
+for dc_angle in [2.5, 4.6, 6.7, 8.8, 10.9]:
     servo_driver1.ChangeDutyCycle(dc_angle)  
     time.sleep(1) 
 

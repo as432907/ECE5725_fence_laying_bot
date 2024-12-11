@@ -79,11 +79,11 @@ def run_motor():
     prev_error = 0
     integral = 0
     dc = 50
-    dc_rev = 50
+    dc_rev = 25
 
     # Track runtime and stop time
     start_time = time.time()  # Record the start time of the current cycle
-    runtime = 5  # Run for 5 seconds
+    runtime = 2  # Run for 5 seconds
     stop_time = 1  # Stop for 1 seconds
     running_time = 0  # Variable to track how long the motor has been running in the cycle
     dc_angle = 0  # Initial servo angle (0 degrees)
@@ -92,18 +92,20 @@ def run_motor():
     while True:
         error = 0
         # Check the state of each encoder
-        if GPIO.input(ENC_LEFT) == GPIO.HIGH and GPIO.input(ENC_RIGHT) == GPIO.HIGH:
-            print("Black line detected")
-            control_motor(dc, dc, "forward")
-        elif GPIO.input(ENC_LEFT) == GPIO.LOW and GPIO.input(ENC_RIGHT) == GPIO.LOW:
-            print("Search for black line")
-            control_motor(dc_rev, dc_rev, "reverse")
-        elif GPIO.input(ENC_LEFT) == GPIO.LOW:
+        if GPIO.input(ENC_LEFT) == GPIO.LOW:
             print("Black not detected on LEFT")
             error = -1
         elif GPIO.input(ENC_RIGHT) == GPIO.LOW:
             print("Black not detected on RIGHT")
             error = 1
+        elif GPIO.input(ENC_LEFT) == GPIO.HIGH and GPIO.input(ENC_RIGHT) == GPIO.HIGH:
+            print("Black line detected")
+            control_motor(dc, dc, "forward")
+            continue
+        elif GPIO.input(ENC_LEFT) == GPIO.LOW and GPIO.input(ENC_RIGHT) == GPIO.LOW:
+            print("Search for black line")
+            control_motor(dc_rev, dc_rev, "reverse")
+            continue
 
         # PID Controller
         integral = max(min(integral + error, 100), -100)

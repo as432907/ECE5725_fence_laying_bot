@@ -87,7 +87,8 @@ Ki = 5
 # --- Setup the display --------------------------------------------
 --------------------------------------------------------------------
 '''
-
+disk_angle = 0  # Angle of the disk (or servo angle)
+dc_angle = 0
 # Setup environment for the framebuffer (required when using pigame)
 os.putenv('SDL_VIDEODRV', 'fbcon')
 os.putenv('SDL_FBDEV', '/dev/fb0')
@@ -161,9 +162,9 @@ def control_motor(dc_A, dc_B, direction):
         GPIO.output(BI_2_pin, GPIO.HIGH)
 
 # -----------Servo Control Function --------------------
-def control_servo_1(dc_angle):
+def control_servo_1(angle):
     print("Rotating servo in 45-degree steps from 0 to 180 degrees:")
-    servo_driver1.ChangeDutyCycle(dc_angle)  
+    servo_driver1.ChangeDutyCycle(angle)  
     time.sleep(1)
 
 # -----------Draw Disk --------------------
@@ -196,7 +197,6 @@ def draw_disk(surface, angle):
 # -----------Run Motor --------------------
 # Global variable to track the disk angle
 
-disk_angle = 0  # Angle of the disk (or servo angle)
 
 def run_motor():
     global disk_angle  # Use the global disk_angle variable for the servo angle
@@ -250,12 +250,6 @@ def run_motor():
             # Increment the disk angle by 45 degrees
             disk_angle += 45
 
-            # Log the cone drop and update the disk angle
-            timestamp = time.strftime('%H:%M:%S')
-            log_entry = f"Dropped cone ({timestamp}) at angle {disk_angle}°"
-            log.append(log_entry)
-            print(log_entry)  # Log to the terminal
-
             # If the disk angle exceeds 180°, reset to 0° to simulate a reset
             if disk_angle >= 180:
                 disk_angle = 0  # Reset to 0 degrees
@@ -295,8 +289,7 @@ while code_running:
     btn_quit_surface = font_small.render(btn_quit_text, True, btn_quit_text_color)
     btn_quit_text_rect = btn_quit_surface.get_rect(center=btn_quit_rect.center)
     m_screen.blit(btn_quit_surface, btn_quit_text_rect)
-    
-    draw_disk(m_screen, dc_angle)
+    draw_disk(m_screen, disk_angle)
 
     pitft.update()
     # Event handling
