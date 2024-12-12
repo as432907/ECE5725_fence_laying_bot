@@ -27,7 +27,7 @@ servo_pin = 24
 GPIO.setup(servo_pin, GPIO.OUT)
 freq = 50
 dc = 2.5
-servo_dc = [2.5, 4.6, 6.7, 8.8, 10.9]
+servo_dc = [2.5, 4.6, 6.3, 8.4, 10.5]
 servo_driver1 = GPIO.PWM(servo_pin, freq)
 
 # Line follower setup
@@ -71,7 +71,7 @@ last_drop_time = time.time()
 drop_interval = 2
 
 # PID variables
-Kp, Kd, Ki = 10, 2, 1
+Kp, Kd, Ki = 20, 10, 1
 prev_error, integral = 0, 0
 
 def move_servo(index):
@@ -169,8 +169,8 @@ def move_robot(timeout, drop_interval):
 
         elif GPIO.input(ENC_CENTER) == GPIO.LOW and GPIO.input(ENC_RIGHT) == GPIO.LOW and GPIO.input(ENC_LEFT) == GPIO.LOW:
             print("Moving BACKWARD")
-            pwm_driver1.ChangeDutyCycle(50)  # Adjust speed as needed
-            pwm_driver2.ChangeDutyCycle(50)
+            pwm_driver1.ChangeDutyCycle(40)  # Adjust speed as needed
+            pwm_driver2.ChangeDutyCycle(40)
             GPIO.output(AI_1_pin, GPIO.LOW)  # Set AIN1
             GPIO.output(AI_2_pin, GPIO.HIGH) # Set AIN2
             GPIO.output(BI_1_pin, GPIO.LOW)  # Set BIN1

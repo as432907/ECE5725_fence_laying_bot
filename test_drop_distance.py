@@ -71,7 +71,7 @@ last_drop_time = time.time()
 drop_interval = 2
 
 # PID variables
-Kp, Kd, Ki = 10, 2, 1
+Kp, Kd, Ki = 20, 5, 1
 prev_error, integral = 0, 0
 
 def move_servo(index):
