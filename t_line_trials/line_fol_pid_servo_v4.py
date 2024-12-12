@@ -27,7 +27,7 @@ for button in Btn:
 	GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # Set the comparator pin as input (to read the digital output)
-ENC_CENTER = 24 # center line follower
+ENC_CENTER = 23 # center line follower
 ENC_LEFT = 12 # left line follower
 ENC_RIGHT = 20 # right line follower
 
@@ -130,6 +130,19 @@ while motor_running:
             GPIO.output(BI_1_pin, GPIO.HIGH) # Set BIN1
             GPIO.output(BI_2_pin, GPIO.LOW) # Set BIN2
             time.sleep(0.5)
+            prev_error = error
+
+        elif GPIO.input(ENC_RIGHT) == GPIO.LOW and GPIO.input(ENC_LEFT) == GPIO.LOW:
+            print("move back")
+            error = 0
+            pwm_driver1.ChangeDutyCycle(dc)
+            pwm_driver2.ChangeDutyCycle(dc)
+            print("dc_clock", dc)
+            GPIO.output(AI_1_pin, GPIO.LOW) # Set AIN1
+            GPIO.output(AI_2_pin, GPIO.HIGH) # Set AIN2
+            GPIO.output(BI_1_pin, GPIO.LOW) # Set BIN1
+            GPIO.output(BI_2_pin, GPIO.HIGH) # Set BIN2
+            time.sleep(0.2)
             prev_error = error
 
 # except KeyboardInterrupt:
