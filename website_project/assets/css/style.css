@@ -848,6 +848,78 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
     padding: 38px 0;
 }
 .hm-footer-copyright p a {color: #888ea5;}
+
+/*-------------------------------------
+    Appendix - Code Section with Thinner Borders and Black Font
+-------------------------------------*/
+.appendix_code {
+    padding: 50px 0;
+    background-color: #f4f4f4; /* Light background color */
+    border-top: 1px solid #e5ebf2;
+}
+
+.appendix_code-content {
+    padding-top: 40px;
+}
+
+.section-heading h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+/* Code Block Styling */
+.code-block {
+    margin-bottom: 40px;
+}
+
+.code-box {
+    background-color: #ffffff;  /* White background for the code box */
+    padding: 15px;
+    border-radius: 6px;
+    color: #000000;  /* Black font */
+    font-family: "Courier New", Courier, monospace;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;  /* Thinner border */
+    max-width: 100%;  /* Ensures the code box does not extend too wide */
+    overflow-x: auto; /* Allows horizontal scrolling if necessary */
+}
+
+.code-box pre {
+    margin: 0;
+    font-size: 16px;
+    color: #000000; /* Black font */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.code-box code {
+    display: block;
+    line-height: 1.6;
+    color: inherit;  /* Inherits black font color */
+}
+
+/* Optional: Styling for Python-specific classes (for clarity) */
+code.python {
+    color: #000000; /* Ensures the text color is black */
+}
+
+code.python .comment {
+    color: #6a9955; /* Optional green color for comments */
+}
+
+code.python .keyword {
+    color: #c586c0; /* Optional purple for keywords */
+}
+
+code.python .string {
+    color: #d69d85; /* Optional orange for strings */
+}
+
+
+
 /*===============================
     Scroll Top
 ===============================*/
