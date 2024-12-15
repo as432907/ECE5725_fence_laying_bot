@@ -709,6 +709,8 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
 }
 
 .gallery-content {padding-top: 100px;}
+.design-content .section-heading { margin-bottom: 20px; }/* Adjust the spacing under the title */
+
 .middle-image {
     height: 200px; /* Set a fixed height */
     height:80%;
@@ -721,9 +723,11 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
     clear: both;
 }
 .isotope .item {
-    position:relative;
-    overflow:hidden;
-    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px; /* Keep some margin between items */
+    border: none; /* Remove the border */
+    box-shadow: none; /* Remove any shadow effects */
 }
 /*.item img*/
 .isotope .item img{
@@ -778,7 +782,13 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
     -o-transform:scale(1);
     transform:scale(1);
     top:0;
-}/*.isotope-overlay*/
+}
+.isotope-overlay span {
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+}
+/*.isotope-overlay*/
 
 /*-------------------------------------
    Demonstration Video Section Styles
