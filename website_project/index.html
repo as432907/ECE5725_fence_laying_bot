@@ -420,10 +420,16 @@
 						<div class="row">
 							<div class="col-12">
 								<div class="single-objective-txt">
-									<h3>
+									<span text-align = justify>
 										<!-- Write your Results here. You can describe the goals or purpose of this section in detail. -->
-										Here the Results this project will go. 
-									</h3>
+										The initial plan of the robot was to place fencing poles on specified drop locations. As we were using a line follower to align the robot in a straight line, we thought this is a good idea to place traffic cones as well, hence we chose Hershey’s kisses which is a good prototype for the cones and poles. 
+We started with implementing a line follower mechanism and used a photodetector sensor (OPL530). The output of the sensors were only showing zero in both reflective and non-reflective surfaces, so we were not able to work with this sensor. Then we worked with two IR reflective sensor modules. This module properly triggers high and low outputs according to black and white lines beneath the robot. However, with two sensors, it was difficult to control the robot movement going forward, left or right. When placed near for black line detection, both the sensors mirrored the same output and could not detect to turn left or right. When placed farther apart, the movement was not stable. Hence, we changed the design with three IR sensors. Now the center sensor was set to high for forward and left and right sensors for proper adjustment when deviation takes place. Additionally, a feedback control was added with the PID algorithm and fine tuned the duty cycle according to the motor movements.
+<br><br>
+We were also working on the mechanical design for dropping the mechanism in parallel with the robot traversing in a line following the track. We brainstormed on the design of the dropping system, and finally came with a circular disc idea with holes aligned in the drop area. To implement this we used cardboards that was precisely cut into a movable circular disc with 8 holes aligned 45 degrees apart from each other. There is another fixed circular disc of exact same circular size with only one hole for the drop. The above movable circular disc was attached with a servo motor to make the necessary rotation drop when specified. We received some servo motors in the beginning but they were not in working condition. This delayed our initial check with the disc and drop. Hence, we worked with a 180 degree servo motor and made 5 drops in a single run. 
+After all the integration of mechanical and electrical modules, the servo motors angular movement was not precisely aligned with the holes in the disc. This created a problem in placing the chocolate drop. We manually observed the rotational error margin and did some trial runs by changing the angular value. We came to a conclusion that the angle should be incremented by 2.1.
+As shown in the gallery below, the circular disc is placed on top of the circuit with another chassis attached. The RPi could not fit in the chassis frame so we extended a small cardboard platform to place it. This also made it easy to use the interface to start, stop and quit. Now, to balance this, we placed the power bank on the other end. Right before the demonstration, the robot movement was not stable and we tracked down that it was a flat tire issue . We replaced the tire in the end and the Hershey’s kisses robot ran successfully in the demo.
+
+									</span>
 								</div>
 							</div>
 						</div>
@@ -522,7 +528,7 @@
 												<div class="timeline">
 													<div class="timeline-content">
 														<p class="description">
-															This week, we plan to build upon the chassis and motor control system developed in Lab 3 by adding the photodetector array and programming it to follow markers on white tiles, where the white tiles act as light-reflecting surface and black tape as light-absorbing markers. This setup will enable the array to sense its position relative to the markers and determine how far it needs to turn to realign with the path. Additionally, we will integrate the PID sensor to improve the robot's stability and accuracy while following the markers.
+															This week, we submitted two project ideas. First idea was Hershey’s kisses dropping robot and second idea was autonomous piano. We presented our idea to the professor and team, and decided to work on Hershey’s kisses dropping robot.
 														</p>
 													</div><!--/.timeline-content-->
 												</div><!--/.timeline-->
@@ -544,7 +550,7 @@
 												<div class="timeline">
 													<div class="timeline-content">
 														<p class="description">
-															This week, we plan to build upon the chassis and motor control system developed in Lab 3 by adding the photodetector array and programming it to follow markers on white tiles, where the white tiles act as light-reflecting surface and black tape as light-absorbing markers. This setup will enable the array to sense its position relative to the markers and determine how far it needs to turn to realign with the path. Additionally, we will integrate the PID sensor to improve the robot's stability and accuracy while following the markers.
+															This week, we brainstormed electrical and mechanical designs. We also listed the initial components required.
 														</p>
 													</div><!--/.timeline-content-->
 												</div><!--/.timeline-->
@@ -566,7 +572,7 @@
 												<div class="timeline">
 													<div class="timeline-content">
 														<p class="description">
-															This week, we plan to build upon the chassis and motor control system developed in Lab 3 by adding the photodetector array and programming it to follow markers on white tiles, where the white tiles act as light-reflecting surface and black tape as light-absorbing markers. This setup will enable the array to sense its position relative to the markers and determine how far it needs to turn to realign with the path. Additionally, we will integrate the PID sensor to improve the robot's stability and accuracy while following the markers.
+															This week, we built the robot as in Lab3 and integrated line follower sensors and created circular disc designs.
 														</p>
 													</div><!--/.timeline-content-->
 												</div><!--/.timeline-->
@@ -588,7 +594,7 @@
 												<div class="timeline">
 													<div class="timeline-content">
 														<p class="description">
-															This week, we plan to build upon the chassis and motor control system developed in Lab 3 by adding the photodetector array and programming it to follow markers on white tiles, where the white tiles act as light-reflecting surface and black tape as light-absorbing markers. This setup will enable the array to sense its position relative to the markers and determine how far it needs to turn to realign with the path. Additionally, we will integrate the PID sensor to improve the robot's stability and accuracy while following the markers.
+															This week, we implemented  PID  to improve the robot's movement and integrated servo motor to rotate the circular disc and drop on the markers.
 														</p>
 													</div><!--/.timeline-content-->
 												</div><!--/.timeline-->
@@ -610,7 +616,7 @@
 												<div class="timeline">
 													<div class="timeline-content">
 														<p class="description">
-															This week, we plan to build upon the chassis and motor control system developed in Lab 3 by adding the photodetector array and programming it to follow markers on white tiles, where the white tiles act as light-reflecting surface and black tape as light-absorbing markers. This setup will enable the array to sense its position relative to the markers and determine how far it needs to turn to realign with the path. Additionally, we will integrate the PID sensor to improve the robot's stability and accuracy while following the markers.
+															This week, we integrated electrical and mechanical systems on the robot. We tested the complete design with a GUI implementation.
 														</p>
 													</div><!--/.timeline-content-->
 												</div><!--/.timeline-->
@@ -632,7 +638,7 @@
 												<div class="timeline">
 													<div class="timeline-content">
 														<p class="description">
-															This week, we plan to build upon the chassis and motor control system developed in Lab 3 by adding the photodetector array and programming it to follow markers on white tiles, where the white tiles act as light-reflecting surface and black tape as light-absorbing markers. This setup will enable the array to sense its position relative to the markers and determine how far it needs to turn to realign with the path. Additionally, we will integrate the PID sensor to improve the robot's stability and accuracy while following the markers.
+															This is the final week. We fine tuned and tested the robot in various tracks. We demonstrated our project to the professor and team. We also completed a video and website.
 														</p>
 													</div><!--/.timeline-content-->
 												</div><!--/.timeline-->
@@ -691,12 +697,12 @@
 						<div class="row">
 							<div class="col-12">
 								<div class="single-objective-txt">
-									<h4>
+									<span test-align=justify>
 										<!-- Write your Future Work here. You can describe the goals or purpose of this section in detail. -->
 										In the future we believe several improvements could be made to enhance the project. First, switching from the RPi GPIO library to pigpio would provide more stable and precise control for the servo motors using hardware-timed PWM. Additionally, increasing the DC motor power would help compensate for the robot's increased weight, improving its mobility. 
 Future work could also include implementing obstacle detection and avoidance, allowing the robot to navigate more autonomously in dynamic environments. Improving the cone storage and deployment system for higher capacity would enable longer operation without manual intervention. Enhancing the user interface to provide real-time status updates and control options, with a connection to a local system or server, would improve monitoring and user interaction.
 Other potential upgrades include exploring computer vision for more precise navigation and placement, and adapting the system for larger-scale applications like fence installation or road marking. These enhancements would broaden the robot’s capabilities for more complex, real-world tasks.
-									</h4>
+									</span>
 								</div>
 							</div>
 						</div>
@@ -723,6 +729,14 @@ Other potential upgrades include exploring computer vision for more precise navi
 							<div class="col-md-12">
 								<div class="code-box">
 									<pre><code class="language-python">
+# ========================================================
+# Team Members:
+# 1. Akansha Shrestha(as4329)
+# 2. Dikshanya Lashmi Ramaswamy(dr655)
+# Project: Hershey’s Kisses Placement Robot
+# Date: 2024-12-15
+# Section: Tuesday, Group 7
+# ========================================================
 import time
 import RPi.GPIO as GPIO
 import pygame
@@ -1003,9 +1017,6 @@ sys.exit()
 				</div>
 				<ol class="references-list">
 					<li>
-						<span>Linear transfer system - LCM - TAKTOMAT GmbH</span> - for presses / industrial / for the construction industry
-					</li>
-					<li>
 						<a href="https://www.adiy.in/product/lm393-comparator-module">Buy LM393 - Comparator Module online at Adiy.in</a>
 					</li>
 					<li>
@@ -1027,7 +1038,21 @@ sys.exit()
 							RPI4 CASE RED/WHITE BULK | Raspberry Pi 4 Enclosure, Raspberry / White | Distrelec International
 						</a>
 					</li>
-					<l
+					<li>
+						<a href="https://www.tomshardware.com/how-to/raspberry-pi-gpio-pinout">Rpi GPIO References - Raspberry Pi GPIO Pinout: What Each Pin Does on Pi 4, Earlier Models | Tom's Hardware</a>
+					</li>
+					<li>
+						<a href="https://sourceforge.net/p/raspberry-gpio-python/wiki/PWM/">More GPIO references - raspberry-gpio-python / Wiki / PWM</a>
+					</li>
+					<li>
+						<a href="https://www.pygame.org/docs/">Pygame Pygame Front Page — pygame v2.6.0 documentation</a>
+					</li>
+					<li>
+						<a href="https://www.sparkfun.com/products/14451">Motor Controller - SparkFun Motor Driver - Dual TB6612FNG (1A) - ROB-14451 - SparkFun Electronics</a>
+					</li>
+					<li>
+						<a href="https://canvas.cornell.edu/courses/21634">Canvas ECE5725 References, Lab Handout & Final Project sources - Course Modules: ECE 5725 Design with Embedded Operating Systems (2024FA)</a>
+					</li>					
 				</ol>
 			</div>
 		</section>
