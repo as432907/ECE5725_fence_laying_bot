@@ -7,22 +7,21 @@ import sys
 import os
 from pygame.locals import *
 
-# Setup environment for the framebuffer
+# -----------  Setup environment for the framebuffer  ---------------
 os.putenv('SDL_VIDEODRV', 'fbcon')
 os.putenv('SDL_FBDEV', '/dev/fb0')
 os.putenv('SDL_MOUSEDRV', 'dummy')
 os.putenv('SDL_MOUSEDEV', '/dev/null')
 os.putenv('DISPLAY', '')
 
-# GPIO Setup
+# -----------------------  GPIO Setup  -----------------------------
 GPIO.setmode(GPIO.BCM)
-
 # Button setup
 GPIOBtns = [17, 22, 23, 27]
 for button in GPIOBtns:
     GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-# Servo setup
+# -----------------------  Servo Setup  -----------------------------
 servo_pin = 24
 GPIO.setup(servo_pin, GPIO.OUT)
 freq = 50
@@ -30,7 +29,7 @@ dc = 2.5
 servo_dc = [2.5, 4.6, 6.3, 8.4, 10.5]
 servo_driver1 = GPIO.PWM(servo_pin, freq)
 
-# Line follower setup
+# -----------------------  Line Follower -----------------------------
 ENC_CENTER = 25
 ENC_LEFT = 12
 ENC_RIGHT = 20
@@ -38,7 +37,7 @@ GPIO.setup(ENC_CENTER, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(ENC_LEFT, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(ENC_RIGHT, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-# Motor setup
+# -----------------------  Motor Setup -----------------------------
 AI_1_pin, AI_2_pin, PWM_Apin = 5, 6, 26
 BI_1_pin, BI_2_pin, PWM_Bpin = 19, 13, 16
 motor_pins = [AI_1_pin, AI_2_pin, PWM_Apin, BI_1_pin, BI_2_pin, PWM_Bpin]
@@ -50,7 +49,7 @@ pwm_driver2 = GPIO.PWM(PWM_Bpin, freq)
 pwm_driver1.start(0)
 pwm_driver2.start(0)
 
-# Pygame Setup
+# -----------------------  Pygame Setup  -------------------------
 pygame.init()
 pitft = pigame.PiTft()
 screen = pygame.display.set_mode((320, 240))
@@ -66,7 +65,7 @@ btn_stop_rect = pygame.Rect(20, 120, 60, 40)
 btn_quit_rect = pygame.Rect(240, 90, 60, 40)
 btn_manual_rect = pygame.Rect(130, 200, 60, 40)
 
-# Variables
+# ----------------------- Variables -----------------------------
 cone_count, servo_index, rotation = 0, 0, False
 last_drop_time = time.time()
 drop_interval = 2
@@ -75,10 +74,13 @@ drop_interval = 2
 Kp, Kd, Ki = 20, 10, 1
 prev_error, integral = 0, 0
 
+
+# -----------------------  Move Servo -----------------------------
 def move_servo(index):
     servo_driver1.ChangeDutyCycle(servo_dc[index])
     time.sleep(0.5)
 
+# -----------------------  Drop Cone  -----------------------------
 def drop_cone():
     global servo_index, rotation
     if not rotation:
@@ -89,6 +91,7 @@ def drop_cone():
     move_servo(servo_index)
     print(f"Dropped cone at {time.strftime('%H:%M:%S')} - Servo position: {servo_index + 1}")
 
+# -----------------------  Draw Disk  -----------------------------
 def draw_disk(surface):
     center, outer_radius, hole_radius = (160, 120), 80, 10
     hole_offset, num_holes, initial_offset = outer_radius - 15, 5, 270
@@ -104,12 +107,14 @@ def draw_disk(surface):
         surface.blit(hole_number_text, hole_number_text.get_rect(center=(int(x), int(y))))
     pygame.draw.circle(surface, RED, center, 5)
 
+# -----------------------  Draw Buttons   -----------------------------
 def draw_buttons():
     for btn, text in zip([btn_start_rect, btn_stop_rect, btn_quit_rect, btn_manual_rect], ['START', 'STOP', 'QUIT', 'Manual Drop']):
         pygame.draw.rect(screen, WHITE, btn)
         text_surf = font_small.render(text, True, BLACK)
         screen.blit(text_surf, text_surf.get_rect(center=btn.center))
 
+# -----------------------  Move Robot  -----------------------------
 def move_robot(timeout, drop_interval):
     global prev_error, integral, servo_index, rotation, motor_running, last_drop_time
     start_time = time.time()
@@ -213,8 +218,6 @@ def stop_motor():
     print("Motors stopped.")
 
 # ----------------------- MAIN FUNCTION ---------------------------------------------------
-
-
 print("Starting the simulation... Press Ctrl+C to quit.")
 code_running = True
 motor_running = False
@@ -251,7 +254,7 @@ while code_running:
 
     pygame.display.flip()
 
-
+# ----------------------- CLEANUP -----------------------------
 print("Exiting the simulation. Goodbye!")
 servo_driver1.stop()
 pwm_driver1.stop()
