@@ -119,8 +119,8 @@
 						<div class="header-text">
 							<h2> Hershey's Kisses Placement Robot </h2>
 							<p> ECE 5725 Final Project </p>
-							presented on <p>December 12th 2024</p>
-							by
+							<span>presented on </span><p>December 12th 2024</p>
+							<span>by</span>
 							<p> Dikshanya Lashmi Ramaswamy<span>(dr655)</span> <br> Akansha Shrestha<span></span>(as4329) </p>
 						</div><!--/.header-text-->
 					</div><!--/.col-->
@@ -213,11 +213,11 @@
 						<div class="row">
 							<div class="col-12">
 								<div class="single-objective-txt">
-									<span text-align = justify>
+									<span text-align: justify>
 										<!-- Write your Design here. You can describe the goals or purpose of this section in detail. -->
 										At the outset of our project, we went through several design sketches and iterations to refine our concept and identify the most feasible approach. The final design was developed through this iterative process, and the images below showcase our final sketches, which served as the blueprint for building the project. To ensure consistent progress and manageable weekly targets (refer to the timeline section), we divided the project into three main components: robot movement and navigation, the cone-dropping mechanism and robot stability, and GUI-based control and integration of modules. 
 									<br>
-									<h3 text-align =center>Design Sketches</h3>
+									<h3 text-align: center>Design Sketches</h3>
 									<!-- <div class="container gallery-content"> -->
 										<div class="row isotope">
 											<!-- Side View -->
@@ -243,7 +243,7 @@
 											</div>
 										</div>
 									<h3>Hardware Setup</h3>
-									<!-- <p text-align = justify> -->
+									<!-- <p text-align: justify> -->
 										The system uses a Raspberry Pi 4 with 2GB RAM as the main processor. The list of parts are indicated in the table below. 
 										<br>
 										<table class="parts-table">
@@ -420,14 +420,14 @@
 						<div class="row">
 							<div class="col-12">
 								<div class="single-objective-txt">
-									<span text-align = justify>
+									<span text-align: justify>
 										<!-- Write your Results here. You can describe the goals or purpose of this section in detail. -->
 										The initial plan of the robot was to place fencing poles on specified drop locations. As we were using a line follower to align the robot in a straight line, we thought this is a good idea to place traffic cones as well, hence we chose Hershey’s kisses which is a good prototype for the cones and poles. 
 We started with implementing a line follower mechanism and used a photodetector sensor (OPL530). The output of the sensors were only showing zero in both reflective and non-reflective surfaces, so we were not able to work with this sensor. Then we worked with two IR reflective sensor modules. This module properly triggers high and low outputs according to black and white lines beneath the robot. However, with two sensors, it was difficult to control the robot movement going forward, left or right. When placed near for black line detection, both the sensors mirrored the same output and could not detect to turn left or right. When placed farther apart, the movement was not stable. Hence, we changed the design with three IR sensors. Now the center sensor was set to high for forward and left and right sensors for proper adjustment when deviation takes place. Additionally, a feedback control was added with the PID algorithm and fine tuned the duty cycle according to the motor movements.
 <br><br>
 We were also working on the mechanical design for dropping the mechanism in parallel with the robot traversing in a line following the track. We brainstormed on the design of the dropping system, and finally came with a circular disc idea with holes aligned in the drop area. To implement this we used cardboards that was precisely cut into a movable circular disc with 8 holes aligned 45 degrees apart from each other. There is another fixed circular disc of exact same circular size with only one hole for the drop. The above movable circular disc was attached with a servo motor to make the necessary rotation drop when specified. We received some servo motors in the beginning but they were not in working condition. This delayed our initial check with the disc and drop. Hence, we worked with a 180 degree servo motor and made 5 drops in a single run. 
 After all the integration of mechanical and electrical modules, the servo motors angular movement was not precisely aligned with the holes in the disc. This created a problem in placing the chocolate drop. We manually observed the rotational error margin and did some trial runs by changing the angular value. We came to a conclusion that the angle should be incremented by 2.1.
-As shown in the gallery below, the circular disc is placed on top of the circuit with another chassis attached. The RPi could not fit in the chassis frame so we extended a small cardboard platform to place it. This also made it easy to use the interface to start, stop and quit. Now, to balance this, we placed the power bank on the other end. Right before the demonstration, the robot movement was not stable and we tracked down that it was a flat tire issue . We replaced the tire in the end and the Hershey’s kisses robot ran successfully in the demo.
+As shown in the gallery below, the circular disc is placed on top of the circuit with another chassis attached. The Rpi could not fit in the chassis frame so we extended a small cardboard platform to place it. This also made it easy to use the interface to start, stop and quit. Now, to balance this, we placed the power bank on the other end. Right before the demonstration, the robot movement was not stable and we tracked down that it was a flat tire issue . We replaced the tire in the end and the Hershey’s kisses robot ran successfully in the demo.
 
 									</span>
 								</div>
@@ -660,7 +660,7 @@ As shown in the gallery below, the circular disc is placed on top of the circuit
 			<div class="section-heading text-center">
 			<h2>Conclusion</h2>
 			</div>
-			<p text-align = justify>
+			<p text-align: justify>
 			<div class="container">
 				<div class="row">
 					<!-- Text Content Section -->
@@ -699,7 +699,7 @@ As shown in the gallery below, the circular disc is placed on top of the circuit
 								<div class="single-objective-txt">
 									<span test-align=justify>
 										<!-- Write your Future Work here. You can describe the goals or purpose of this section in detail. -->
-										In the future we believe several improvements could be made to enhance the project. First, switching from the RPi GPIO library to pigpio would provide more stable and precise control for the servo motors using hardware-timed PWM. Additionally, increasing the DC motor power would help compensate for the robot's increased weight, improving its mobility. 
+										In the future we believe several improvements could be made to enhance the project. First, switching from the Rpi GPIO library to pigpio would provide more stable and precise control for the servo motors using hardware-timed PWM. Additionally, increasing the DC motor power would help compensate for the robot's increased weight, improving its mobility. 
 Future work could also include implementing obstacle detection and avoidance, allowing the robot to navigate more autonomously in dynamic environments. Improving the cone storage and deployment system for higher capacity would enable longer operation without manual intervention. Enhancing the user interface to provide real-time status updates and control options, with a connection to a local system or server, would improve monitoring and user interaction.
 Other potential upgrades include exploring computer vision for more precise navigation and placement, and adapting the system for larger-scale applications like fence installation or road marking. These enhancements would broaden the robot’s capabilities for more complex, real-world tasks.
 									</span>
@@ -738,7 +738,7 @@ Other potential upgrades include exploring computer vision for more precise navi
 # Section: Tuesday, Group 7
 # ========================================================
 import time
-import RPi.GPIO as GPIO
+import Rpi.GPIO as GPIO
 import pygame
 import pigame
 import math
@@ -1034,8 +1034,8 @@ sys.exit()
 						</a>
 					</li>
 					<li>
-						<a href="https://www.distrelec.com/en/rpi4-case-red-white-bulk-raspberry-pi-4-enclosure-raspberry-white/p/30018925">
-							RPI4 CASE RED/WHITE BULK | Raspberry Pi 4 Enclosure, Raspberry / White | Distrelec International
+						<a href="https://www.distrelec.com/en/Rpi4-case-red-white-bulk-raspberry-pi-4-enclosure-raspberry-white/p/30018925">
+							Rpi4 CASE RED/WHITE BULK | Raspberry Pi 4 Enclosure, Raspberry / White | Distrelec International
 						</a>
 					</li>
 					<li>
