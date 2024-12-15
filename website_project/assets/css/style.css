@@ -283,6 +283,49 @@ nav.navbar.bootsnav .navbar-toggle i{color: #d92cf9;}
     line-height: 1.6;
 }
 
+/* Parts Table Styling */
+.parts-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.parts-table th, .parts-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+.parts-table thead th {
+    background-color: #f4f4f4;
+    font-weight: 600;
+    color: #333;
+}
+
+.parts-table tr {
+    background-color: #fff;
+}
+
+.parts-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Highlight the first row */
+.parts-table .highlight-blue {
+    background-color: #e8f4fc; /* Mild blue */
+    font-weight: 600;
+    color: #333;
+}
+
+/* Highlight the last row */
+.parts-table .highlight-grey {
+    background-color: #f7f7f7; /* Light grey */
+    font-weight: 600;
+}
+
+
 /*-------------------------------------
         4.  About
 --------------------------------------*/
