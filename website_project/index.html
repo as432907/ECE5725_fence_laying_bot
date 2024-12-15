@@ -43,6 +43,16 @@
         <!--responsive.css-->
         <link rel="stylesheet" href="assets/css/responsive.css">
         
+		<!-- For code appendix -->
+		<!-- Include the Prism CSS (for styling the code blocks) -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+		<!-- Include Prism JS (for syntax highlighting) -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+		<!-- Include the Python language support -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		
@@ -511,7 +521,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="code-box">
-									<pre><code class="python">
+									<pre><code class="language-python">
 import time
 import RPi.GPIO as GPIO
 import pygame
@@ -774,14 +784,14 @@ GPIO.cleanup()
 pygame.quit()
 del pitft
 sys.exit()
-									</code></pre>
-								</div><!--/.code-box-->
-							</div><!--/.col-->
-						</div><!--/.row-->
-					</div><!--/.code-block-->
-				</div><!--.appendix_code-content-->
-			</div><!--/.container-->
-		</section><!--/.appendix_code-->		
+								</code></pre>
+							</div><!--/.code-box-->
+						</div><!--/.col-->
+					</div><!--/.row-->
+				</div><!--/.code-block-->
+			</div><!--.appendix_code-content-->
+		</div><!--/.container-->
+		</section><!--/.appendix_code-->
 		<!-- appendix code end -->
 
 		<!--footer-copyright start-->
