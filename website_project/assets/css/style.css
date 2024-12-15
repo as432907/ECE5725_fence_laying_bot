@@ -18,7 +18,7 @@ font-family: 'Poppins', sans-serif;
 6.  Skill
 7.  Experience
 8.  Profiles
-9.  Portfolio
+9.  gallery
 10. Clients
 11. Contact
 
@@ -62,12 +62,13 @@ h1,h2,h3,h4,h5,h6 {
 	text-transform: capitalize;
 }
 p {
-	margin: 0;
-	line-height:1.8;
-	color:#43485c;
-	font-size:14px;
-	font-family: 'Poppins', sans-serif;
+    margin: 0;
+    line-height: 1.8;
+    color: #43485c;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
 }
+
 img{border:none;max-width:100%; height:auto;}
 ul{
 	padding: 0;
@@ -114,6 +115,13 @@ nav.navbar.bootsnav {
     background-color: #fff;
     border-bottom: transparent;
     box-shadow: 0 3px 15px rgba(0,0,0,.2);
+}
+
+.navbar-header a.navbar-brand img.home-logo {
+    max-height: 40px; /* Adjust logo size */
+    width: auto;
+    display: block;
+    margin-top: -5px; /* Adjust vertical alignment */
 }
 
 /*.navbar-brand*/
@@ -190,7 +198,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #d92cf9;}
     align-items: center;
     justify-content: center;
     position:relative;
-    background:url(../images/about/welcome-banner.jpg)no-repeat;
+    background:url(../images/robot/robot_still_image.jpg)no-repeat;
     background-size:cover;
     background-position: center;
     height:890px;
@@ -240,6 +248,31 @@ nav.navbar.bootsnav .navbar-toggle i{color: #d92cf9;}
 }
 .header-text a:hover{ box-shadow: 0 5px 20px rgba(0,0,0,.4);background:#9f00ff;border: 1px solid #9f00ff;}
 /*.header-text-area*/
+
+
+/*-------------------------------------
+   Objective Section Styles
+--------------------------------------*/
+.objective {
+    padding: 50px 0 100px;
+}
+.objective-content {
+    padding-top: 50px;
+}
+.single-objective-txt h3 {
+    font-size: 18px;
+    color: #3c4258;
+    text-transform: capitalize;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+.single-objective-txt p {
+    font-size: 16px;
+    color: #999fb3;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #999fb3;
+    line-height: 1.6;
+}
 
 /*-------------------------------------
         4.  About
@@ -363,7 +396,10 @@ span.single-timeline-horizontal {
 }
 span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
 /*.timeline-horizontal-border*/
-
+/* span.pressed-text
+{
+    color: #d92cf9;
+} */
 /*.education-horizontal-timeline*/
 
 /*-------------------------------------
@@ -592,15 +628,19 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
 .single-profile:hover .profile-icon-name,.single-profile:hover .profile-txt a>i{color: #fff;}
 .single-profile:hover .profile-border {border:transparent;}
 /*-------------------------------------
-        9. Portfolio
+        9. gallery
 --------------------------------------*/
-.portfolio {
+.gallery {
     padding:  50px 0 100px;
     border:  1px solid #e5ebf2;
 }
 
-.portfolio-content {padding-top: 100px;}
-
+.gallery-content {padding-top: 100px;}
+.middle-image {
+    height: 200px; /* Set a fixed height */
+    height:80%;
+    object-fit: cover; /* Ensures the image is cropped to fit the specified height */
+}
 /* ---- .item ---- */
 .isotope:after {
     content: '';
@@ -666,6 +706,84 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
     transform:scale(1);
     top:0;
 }/*.isotope-overlay*/
+
+/*-------------------------------------
+   Demonstration Video Section Styles
+--------------------------------------*/
+.demonstration-video {
+    padding: 50px 0 100px;
+    border: 1px solid #e5ebf2;
+}
+.demonstration-video .section-heading {
+    margin-bottom: 30px;
+}
+.demonstration-video .section-heading h2 {
+    font-size: 28px;
+    color: #3c4258;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+.video-content {
+    padding-top: 50px;
+    text-align: center;
+}
+.single-video {
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    max-width: 800px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+.single-video iframe {
+    width: 100%;
+    height: 450px;
+    -webkit-transition: transform .5s;
+    -moz-transition: transform .5s;
+    -ms-transition: transform .5s;
+    -o-transition: transform .5s;
+    transition: transform .5s;
+}
+.single-video:hover iframe {
+    -webkit-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    -o-transform: scale(1.02);
+    transform: scale(1.02);
+}
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(31, 44, 108, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: transform .5s;
+    -moz-transition: transform .5s;
+    -ms-transition: transform .5s;
+    -o-transition: transform .5s;
+    transition: transform .5s;
+}
+.single-video:hover .video-overlay {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+}
+.video-overlay a {
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+}
 
 /*-------------------------------------
         10. Clients
