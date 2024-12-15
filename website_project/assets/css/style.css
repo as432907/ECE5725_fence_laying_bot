@@ -54,12 +54,28 @@ a,a:hover,a:active,a:focus {
 	font-size:16px;
 	padding:0;
 }
-h1,h2,h3,h4,h5,h6 { 
+h1,h2,h3,h4,{ 
 	margin: 0;
 	color:#43485c;
     font-size: 16px;
 	font-family: 'Poppins', sans-serif;
 	text-transform: capitalize;
+}
+h5{
+    margin: 0;
+	color:#43485c;
+    font-size: 14px;
+    text-align: justify;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 20px; /* Adjust as needed */
+  }
+h6{
+    margin: 0;
+	color:#43485c;
+    font-size: 12px;
+    text-align: justify;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 20px; /* Adjust as needed */
 }
 p {
     margin: 0;
@@ -324,7 +340,21 @@ nav.navbar.bootsnav .navbar-toggle i{color: #d92cf9;}
     background-color: #f7f7f7; /* Light grey */
     font-weight: 600;
 }
-
+#Conclusion .row {
+    display: flex;
+    align-items: center; /* Centers the content vertically */
+  }
+  
+#Conclusion .team-photo {
+    display: flex;
+    justify-content: center; /* Centers the image horizontally */
+  }
+  
+#Conclusion .team-photo img {
+    max-width: 100%; /* Ensures responsiveness */
+    height: auto;
+  }
+  
 
 /*-------------------------------------
         4.  About

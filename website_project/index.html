@@ -213,117 +213,195 @@
 						<div class="row">
 							<div class="col-12">
 								<div class="single-objective-txt">
-									<h3>
+									<span text-align = justify>
 										<!-- Write your Design here. You can describe the goals or purpose of this section in detail. -->
-										Here the Design this project will go. 
-									</h3>
-									<div class="design-content gallery">
-										<div class="section-heading text-center">
-										<h3>Design Views</h3>
-										</div>
-										<div class="container gallery-content">
-											<div class="row isotope">
-												<!-- Side View -->
-												<div class="col-md-4 item">
-													<img src="assets/images/robot/sideview.jpg" alt="Side View" class="middle-image">
-													<div class="isotope-overlay">
-														<span>Side View</span>
-													</div>
+										At the outset of our project, we went through several design sketches and iterations to refine our concept and identify the most feasible approach. The final design was developed through this iterative process, and the images below showcase our final sketches, which served as the blueprint for building the project. To ensure consistent progress and manageable weekly targets (refer to the timeline section), we divided the project into three main components: robot movement and navigation, the cone-dropping mechanism and robot stability, and GUI-based control and integration of modules. 
+									<br>
+									<h3 text-align =center>Design Sketches</h3>
+									<!-- <div class="container gallery-content"> -->
+										<div class="row isotope">
+											<!-- Side View -->
+											<div class="col-md-4 item">
+												<img src="assets/images/robot/sideview.jpg" alt="Side View" class="middle-image">
+												<div class="isotope-overlay">
+													<span>Side View</span>
 												</div>
-												<!-- Top View -->
-												<div class="col-md-4 item">
-													<img src="assets/images/robot/topview.jpg" alt="Top View" class="middle-image">
-													<div class="isotope-overlay">
-														<span>Top View</span>
-													</div>
+											</div>
+											<!-- Top View -->
+											<div class="col-md-4 item">
+												<img src="assets/images/robot/topview.jpg" alt="Top View" class="middle-image">
+												<div class="isotope-overlay">
+													<span>Top View</span>
 												</div>
-												<!-- Back View -->
-												<div class="col-md-4 item">
-													<img src="assets/images/robot/backview.jpg" alt="Back View" class="middle-image">
-													<div class="isotope-overlay">
-														<span>Back View</span>
-													</div>
+											</div>
+											<!-- Back View -->
+											<div class="col-md-4 item">
+												<img src="assets/images/robot/backview.jpg" alt="Back View" class="middle-image">
+												<div class="isotope-overlay">
+													<span>Back View</span>
 												</div>
 											</div>
 										</div>
-									</div>									
-									<h3>Parts List and Costs</h3>
-									<table class="parts-table">
-										<thead>
+									<h3>Hardware Setup</h3>
+									<!-- <p text-align = justify> -->
+										The system uses a Raspberry Pi 4 with 2GB RAM as the main processor. The list of parts are indicated in the table below. 
+										<br>
+										<table class="parts-table">
+											<thead>
+												<tr class="highlight-blue">
+													<th>Parts</th>
+													<th>Count</th>
+													<th>Price (USD)</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Raspberry Pi 4, 2G RAM</td>
+													<td>1</td>
+													<td>$45</td>
+												</tr>
+												<tr>
+													<td>Adafruit PiTFT Plus 320×240 2.8″ TFT</td>
+													<td>1</td>
+													<td>$30</td>
+												</tr>
+												<tr>
+													<td>Raspberry Pi4 GPIO Pin - Breakout cable</td>
+													<td>1</td>
+													<td>$3</td>
+												</tr>
+												<tr>
+													<td>Raspberry Pi case</td>
+													<td>1</td>
+													<td>$4</td>
+												</tr>
+												<tr>
+													<td>Lab3 Robot Kit with chassis, DC motor(2), etc.</td>
+													<td>1</td>
+													<td>$13</td>
+												</tr>
+												<tr>
+													<td>Rpi Power Supply - ANKER Power Bank - 5000mAh - 7.5W</td>
+													<td>1</td>
+													<td>$30</td>
+												</tr>
+												<tr>
+													<td>16 GB SD card</td>
+													<td>1</td>
+													<td>$10</td>
+												</tr>
+												<tr>
+													<td>Motor controller - Dual TB6612FNG</td>
+													<td>1</td>
+													<td>$33</td>
+												</tr>
+												<tr>
+													<td>Motor Power (4AA+holder)</td>
+													<td>1</td>
+													<td>$10</td>
+												</tr>
+												<tr>
+													<td>Infrared Reflective sensor module - HW870-TCRT5000</td>
+													<td>3</td>
+													<td>$2</td>
+												</tr>
+												<tr>
+													<td>Servo motors - SG90</td>
+													<td>1</td>
+													<td>$5</td>
+												</tr>
+												<tr>
+													<td>Cardboard</td>
+													<td>Reused</td>
+													<td>$0</td>
+												</tr>
+												<tr class="highlight-grey">
+													<td colspan="2"><strong>TOTAL</strong></td>
+													<td><strong>~$190</strong></td>
+												</tr>
+											</tbody>
+										</table>
+										<h3> Implementation </h3>
+										First, we initialize the GPIO pins, configure PWM for controlling the servo and motors, and set up the Pygame display for the user interface. The GPIO pins are assigned for various inputs and outputs, including buttons, servo control, line-following sensors, and motor control. All GPIO pins are configured with pull-up resistors, and the initial frequency for all motors is set to 50Hz. The GPIO button 27 on the PiTFT is designated as the manual exit button.
+										<!-- Raspberry Pi Pin Usage Table -->
+										<table class="parts-table">
+											<thead>
 											<tr class="highlight-blue">
-												<th>Parts</th>
-												<th>Count</th>
-												<th>Price (USD)</th>
+												<th>Rpi Pin</th>
+												<th>Usage</th>
 											</tr>
-										</thead>
-										<tbody>
+											</thead>
+											<tbody>
 											<tr>
-												<td>Raspberry Pi 4, 2G RAM</td>
-												<td>1</td>
-												<td>$45</td>
+												<td>24</td>
+												<td>Servo Pin</td>
 											</tr>
 											<tr>
-												<td>Adafruit PiTFT Plus 320×240 2.8″ TFT</td>
-												<td>1</td>
-												<td>$30</td>
+												<td>25</td>
+												<td>Encoder Center</td>
 											</tr>
 											<tr>
-												<td>Raspberry Pi4 GPIO Pin - Breakout cable</td>
-												<td>1</td>
-												<td>$3</td>
+												<td>12</td>
+												<td>Encoder Left</td>
 											</tr>
 											<tr>
-												<td>Raspberry Pi case</td>
-												<td>1</td>
-												<td>$4</td>
+												<td>20</td>
+												<td>Encoder Right</td>
 											</tr>
 											<tr>
-												<td>Lab3 Robot Kit with chassis, DC motor(2), etc.</td>
-												<td>1</td>
-												<td>$13</td>
+												<td>5</td>
+												<td>DC motor A1</td>
 											</tr>
 											<tr>
-												<td>Rpi Power Supply - ANKER Power Bank - 5000mAh - 7.5W</td>
-												<td>1</td>
-												<td>$30</td>
+												<td>6</td>
+												<td>DC motor A2</td>
 											</tr>
 											<tr>
-												<td>16 GB SD card</td>
-												<td>1</td>
-												<td>$10</td>
+												<td>26</td>
+												<td>DC motor A - PWM</td>
 											</tr>
 											<tr>
-												<td>Motor controller - Dual TB6612FNG</td>
-												<td>1</td>
-												<td>$33</td>
+												<td>19</td>
+												<td>DC motor B1</td>
 											</tr>
 											<tr>
-												<td>Motor Power (4AA+holder)</td>
-												<td>1</td>
-												<td>$10</td>
+												<td>13</td>
+												<td>DC motor B2</td>
 											</tr>
 											<tr>
-												<td>Infrared Reflective sensor module - HW870-TCRT5000</td>
-												<td>3</td>
-												<td>$2</td>
+												<td>16</td>
+												<td>DC motor B - PWM</td>
 											</tr>
 											<tr>
-												<td>Servo motors - SG90</td>
-												<td>1</td>
-												<td>$5</td>
+												<td>17, 22, 23, 27</td>
+												<td>PiTFT buttons (Default)</td>
 											</tr>
 											<tr>
-												<td>Cardboard</td>
-												<td>Reused</td>
-												<td>$0</td>
+												<td>27</td>
+												<td>Manual Exit Button</td>
 											</tr>
-											<tr class="highlight-grey">
-												<td colspan="2"><strong>TOTAL</strong></td>
-												<td><strong>~$190</strong></td>
-											</tr>
-										</tbody>
-									</table>
-
+											</tbody>
+										</table>
+										<br>
+										The line following functionality utilizes three IR Reflective sensors (ENC_CENTER, ENC_LEFT, and ENC_RIGHT) to detect the black line on the ground. The sensors detect light reflection (set to LOW) and when moved over non-reflective/low reflection surfaces such as black lines they don’t detect (set to HIGH).  We initially used only two sensors but the accuracy of the movement was not very good as they kept interacting with or mimicking each other. The robot's movement is further controlled by a Proportional-Integral-Derivative (PID) feedback algorithm, which adjusts the motor speeds based on the sensor readings. When the center sensor detects the line i.e., when only ENC_CENTER is HIGH, the robot moves forward. At this position the deviation termed the error variable is set to zero. If the line deviates to the left or right, ENC_RIGHT is HIGH or ENC_LEFT is HIGH respectively and error is set to -1 or 1 respectively. The PID algorithm calculates the appropriate motor speeds to correct the robot's path according to the proportional (Kp), integral (Ki) and derivative (Kd) constants and error variables. Using the formula: PID = Kp * error + Kd * (error- prev_error) + Ki * (integral + error), the motors adjust the speeds to reach back to the set points.When all sensors don’t detect the path the robot moves backward with slightly slower speed to get back to its previous location and sensors activate to find the path again. This ensures smooth and accurate line following, allowing the robot to navigate its predetermined route effectively.
+										<br><br>
+										The dropping mechanism is controlled by a servo motor connected to a rotating disk with five positions. We had originally planned a fully rotating disk, but as we used SG90 servo our rotation was limited to 180 degrees and hence have 5 positions and four drops per cycle. The servo motor's position is adjusted using PWM (Pulse Width Modulation) signals, with each position corresponding to a specific duty cycle as defined in the function move_servo() and servo_dc list. This specific duty cycle was calibrated via multiple iterations to ensure precise drop. The drop_cone() function manages the cone dropping process, rotating the servo to the next position when called. This function is triggered at regular intervals during the robot's operation, ensuring consistent and timely cone placement. The rotation of the disk is visually represented in the GUI, providing real-time feedback on the current dropping position.  We also designed a cylindrical pipe to make the drop smoother and make sure that the cone is vertical while dropping. 
+										<br><br>
+										The Graphical User Interface (GUI) is implemented using the Pygame library and is displayed on a PiTFT screen. We need additional python files, pigame.py and pitft_touchscreen.py for the functioning of the gui and pitft screen with the Rpi. The GUI features a visual representation of the rotating disk with five numbered holes, buttons for start, stop, quit, and manual drop functions. The current servo position is highlighted in red on the disk visualization. The draw_disk() function is responsible for rendering this disk representation, while the draw_buttons() function creates the interactive buttons namely start, stop, quit and manual drop. The GUI provides an intuitive interface for users to control the robot's operations and monitor its status. The GUI is completely modular and when the number of holes or size needs to be changed they can be done with relative ease. The GUI is continuously updated via the pitft.update() command called before the pigame event loop and pygame.display.flip() at the end of the event. This provides a smooth GUI experience. 
+										<br><br>
+										The integration of these components is achieved through the main loop and the move_robot() function. The main while loop runs when code_running flag is set to True and it continuously updates the GUI and checks for user input via the touchscreen or GPIO buttons. When the start button is pressed, the move_robot() function is called and motor_running is set to True, which combines the line following logic with the cone dropping mechanism. The motor_running flag is critical for the code to keep track of how long and when the robot is moving. For example when the robot is stopped it should also stop the dropping mechanism unless manually triggered. The move_robot() function runs for a specified duration, during which it continuously checks the line sensors, adjusts the robot's movement, and triggers cone drops at set intervals. The integration also includes safety features, such as a stop button to halt the robot's movement and a quit button to exit the program. The user can also drop cones at will using the manual drop button. This comprehensive integration ensures that all components work together seamlessly, allowing the robot to navigate the line, drop cones at regular intervals, and respond to user input through the GUI. Once the code finishes its execution it stops all the motors and cleans gpio and quits pigame before doing a system exit. 
+										<br>
+										<div class="item">
+											<img src="assets/images/gallery/circuitdiagram.png" alt="circuit diagram"/>
+											<div class="isotope-overlay">
+												<a href="#">
+													Circuit Diagram
+												</a>
+											</div><!-- /.isotope-overlay -->
+										</div><!-- /.item -->
+										<br>
+										During the entire project development, it was tested during each milestone. Testing involved verifying the functionality of each component to ensure the robot performed as expected. The line-following accuracy was assessed and the Kp, Ki and Kd values were fine-tuned to ensure smooth and reliable navigation along the predefined path. The servo motor's positioning for cone placement was calibrated by adjusting the PWM duty cycles, ensuring precise and consistent drops at the correct intervals. The user interface was thoroughly tested for responsiveness, ensuring that buttons and visual elements functioned correctly on the PiTFT display. Finally, the overall system integration was evaluated for reliability and performance, ensuring that all components—motors, sensors, servo, and GUI—worked seamlessly together during the robot’s operation.
+									</span>
 								</div>
 							</div>
 						</div>
@@ -353,6 +431,74 @@
 				</div>
 			</section>
 		<!-- Results Section End -->
+
+		<!--gallery start -->
+		<section id="gallery" class="gallery">
+			<div class="gallery-details">
+				<div class="section-heading text-center">
+					<h2>gallery</h2>
+				</div>
+				<div class="container">
+					<div class="gallery-content">
+						<div class="isotope">
+							<div class="row">
+
+								<div class="col-sm-4">
+									<div class="item">
+										<img src="assets/images/gallery/p1.jpg" alt="gallery image"/>
+										<div class="isotope-overlay">
+											<a href="#">
+												Robot Path
+											</a>
+										</div><!-- /.isotope-overlay -->
+									</div><!-- /.item -->
+									<div class="item">
+										<img src="assets/images/gallery/p2.jpg" alt="gallery image"/>
+										<div class="isotope-overlay">
+											<a href="#">
+												Motor Power Source
+											</a>
+										</div><!-- /.isotope-overlay -->
+									</div><!-- /.item -->
+								</div><!-- /.col -->
+
+								<div class="col-sm-4">
+									<div class="item">
+										<img src="assets/images/robot/botview.jpg" alt="gallery image"/>
+										<div class="isotope-overlay">
+											<a href="#">
+												Robot Design
+											</a>
+										</div><!-- /.isotope-overlay -->
+									</div><!-- /.item -->
+								</div><!-- /.col -->
+
+								<div class="col-sm-4">
+									<div class="item">
+										<img src="assets/images/gallery/gui_md_5.jpg" alt="gallery image"/>
+										<div class="isotope-overlay">
+											<a href="#">
+												GUI
+											</a>
+										</div><!-- /.isotope-overlay -->
+									</div><!-- /.item -->
+									<div class="item">
+										<img src="assets/images/robot/robot_still_image.jpg" alt="gallery image"/>
+										<div class="isotope-overlay">
+											<a href="#">
+												Bot Sideview
+											</a>
+										</div><!-- /.isotope-overlay -->
+									</div><!-- /.item -->
+								</div><!-- /.col -->
+							</div><!-- /.row -->
+						</div><!--/.isotope-->
+					</div><!--/.gallery-content-->
+				</div><!--/.container-->
+			</div><!--/.gallery-details-->
+
+		</section><!--/.gallery-->
+		<!--gallery end -->
 
 		<!--timeline_1 start -->
 		<section id="timeline_1" class="timeline_1">
@@ -506,101 +652,34 @@
 		<!-- Conclusion Section Start -->
 		<section id="Conclusion" class="objective">
 			<div class="section-heading text-center">
-				<h2>Conclusion</h2>
-				</div>
-				<div class="container">
-					<div class="objective-content">
-						<div class="row">
-							<div class="col-12">
-								<div class="single-objective-txt">
-									<h4>
-										<!-- Write your Conclusion here. You can describe the goals or purpose of this section in detail. -->
-										The team strategically divided the project responsibilities to maximize efficiency and expertise. Akansha took primary responsibility for developing the line following functionality and implementing the PID (Proportional-Integral-Derivative) control algorithm, which is crucial for precise robotic navigation. 
-										Simultaneously, Dikshanya focused on designing the dropping mechanism, creating the graphical user interface (GUI), and managing the overall system integration. <br>
-									</h4>
-									<h4>
-										Throughout the project development, both team members collaborated extensively, conducting multiple rounds of experimental testing and precision mapping. 
-										These collaborative efforts were directed towards fine-tuning the IR sensor positioning and optimizing the servo motor's rotational angles, ensuring the highest possible accuracy in cone placement.<br>
-									</h4>
-									<h4>
-										The Hershey's Kisses Placement Robot ultimately represents a significant achievement in embedded systems design. By successfully integrating autonomous navigation, precise object placement, and a user-friendly interface, the team demonstrated the potential of robotic systems to automate repetitive tasks with remarkable precision. 
-										The project not only showcases technical prowess but also highlights the power of collaborative engineering in solving complex robotic challenges.
-									</h4>
-								</div>
-							</div>
+			<h2>Conclusion</h2>
+			</div>
+			<p text-align = justify>
+			<div class="container">
+				<div class="row">
+					<!-- Text Content Section -->
+					<div class="col-md-8">
+						<div class="single-objective-txt">
+							The team strategically divided the project responsibilities to maximize efficiency and expertise. Akansha took primary responsibility for developing the line-following functionality and implementing the PID (Proportional-Integral-Derivative) control algorithm, which is crucial for precise robotic navigation. Simultaneously, Dikshanya focused on designing the dropping mechanism, creating the graphical user interface (GUI), and managing the overall system integration.
+							<br><br>
+							Throughout the project development, both team members collaborated extensively, conducting multiple rounds of experimental testing and precision mapping. These collaborative efforts were directed towards fine-tuning the IR sensor positioning and optimizing the servo motor's rotational angles, ensuring the highest possible accuracy in cone placement.
+							<br>
+							<br>
+							The Hershey's Kisses Placement Robot ultimately represents a significant achievement in embedded systems design. By successfully integrating autonomous navigation, precise object placement, and a user-friendly interface, the team demonstrated the potential of robotic systems to automate repetitive tasks with remarkable precision. The project not only showcases technical prowess but also highlights the power of collaborative engineering in solving complex robotic challenges.
+						</div>
+					</div>
+					<!-- Team Photo Section -->
+					<div class="col-md-4 d-flex justify-content-center">
+						<div class="team-photo">
+							<!-- Replace with the path to your team photo -->
+							<img src="assets/images/gallery/teamphoto.jpg" alt="Team Photo" class="img-fluid">
 						</div>
 					</div>
 				</div>
-			</section>
+			</div>
+			</p>
+		</section>
 		<!-- Conclusion Section End -->
-
-		<!--gallery start -->
-		<section id="gallery" class="gallery">
-			<div class="gallery-details">
-				<div class="section-heading text-center">
-					<h2>gallery</h2>
-				</div>
-				<div class="container">
-					<div class="gallery-content">
-						<div class="isotope">
-							<div class="row">
-
-								<div class="col-sm-4">
-									<div class="item">
-										<img src="assets/images/gallery/p1.jpg" alt="gallery image"/>
-										<div class="isotope-overlay">
-											<a href="#">
-												Robot Path
-											</a>
-										</div><!-- /.isotope-overlay -->
-									</div><!-- /.item -->
-									<div class="item">
-										<img src="assets/images/gallery/p2.jpg" alt="gallery image"/>
-										<div class="isotope-overlay">
-											<a href="#">
-												Motor Power Source
-											</a>
-										</div><!-- /.isotope-overlay -->
-									</div><!-- /.item -->
-								</div><!-- /.col -->
-
-								<div class="col-sm-4">
-									<div class="item">
-										<img src="assets/images/robot/botview.jpg" alt="gallery image"/>
-										<div class="isotope-overlay">
-											<a href="#">
-												Robot Design
-											</a>
-										</div><!-- /.isotope-overlay -->
-									</div><!-- /.item -->
-								</div><!-- /.col -->
-
-								<div class="col-sm-4">
-									<div class="item">
-										<img src="assets/images/gallery/gui_md_5.jpg" alt="gallery image"/>
-										<div class="isotope-overlay">
-											<a href="#">
-												GUI
-											</a>
-										</div><!-- /.isotope-overlay -->
-									</div><!-- /.item -->
-									<div class="item">
-										<img src="assets/images/robot/robot_still_image.jpg" alt="gallery image"/>
-										<div class="isotope-overlay">
-											<a href="#">
-												Bot Sideview
-											</a>
-										</div><!-- /.isotope-overlay -->
-									</div><!-- /.item -->
-								</div><!-- /.col -->
-							</div><!-- /.row -->
-						</div><!--/.isotope-->
-					</div><!--/.gallery-content-->
-				</div><!--/.container-->
-			</div><!--/.gallery-details-->
-
-		</section><!--/.gallery-->
-		<!--gallery end -->
 
 		<!-- Future Work Section Start -->
 		<section id="futurework" class="objective">
@@ -612,10 +691,12 @@
 						<div class="row">
 							<div class="col-12">
 								<div class="single-objective-txt">
-									<h3>
+									<h4>
 										<!-- Write your Future Work here. You can describe the goals or purpose of this section in detail. -->
-										Here the Future Work this project will go. 
-									</h3>
+										In the future we believe several improvements could be made to enhance the project. First, switching from the RPi GPIO library to pigpio would provide more stable and precise control for the servo motors using hardware-timed PWM. Additionally, increasing the DC motor power would help compensate for the robot's increased weight, improving its mobility. 
+Future work could also include implementing obstacle detection and avoidance, allowing the robot to navigate more autonomously in dynamic environments. Improving the cone storage and deployment system for higher capacity would enable longer operation without manual intervention. Enhancing the user interface to provide real-time status updates and control options, with a connection to a local system or server, would improve monitoring and user interaction.
+Other potential upgrades include exploring computer vision for more precise navigation and placement, and adapting the system for larger-scale applications like fence installation or road marking. These enhancements would broaden the robot’s capabilities for more complex, real-world tasks.
+									</h4>
 								</div>
 							</div>
 						</div>
@@ -675,7 +756,7 @@ servo_dc = [2.5, 4.6, 6.3, 8.4, 10.5]
 servo_driver1 = GPIO.PWM(servo_pin, freq)
 
 # Line follower setup
-ENC_CENTER = 23
+ENC_CENTER = 25
 ENC_LEFT = 12
 ENC_RIGHT = 20
 GPIO.setup(ENC_CENTER, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -946,6 +1027,7 @@ sys.exit()
 							RPI4 CASE RED/WHITE BULK | Raspberry Pi 4 Enclosure, Raspberry / White | Distrelec International
 						</a>
 					</li>
+					<l
 				</ol>
 			</div>
 		</section>
