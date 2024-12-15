@@ -31,7 +31,7 @@ servo_dc = [2.5, 4.6, 6.3, 8.4, 10.5]
 servo_driver1 = GPIO.PWM(servo_pin, freq)
 
 # Line follower setup
-ENC_CENTER = 23
+ENC_CENTER = 25
 ENC_LEFT = 12
 ENC_RIGHT = 20
 GPIO.setup(ENC_CENTER, GPIO.IN, pull_up_down=GPIO.PUD_UP)
