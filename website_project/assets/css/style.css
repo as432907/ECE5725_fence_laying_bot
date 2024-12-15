@@ -266,6 +266,15 @@ nav.navbar.bootsnav .navbar-toggle i{color: #d92cf9;}
     line-height: 1.8;
     margin-bottom: 20px;
 }
+.single-objective-txt h4 {
+    font-size: 18px;
+    color: #3c4258;
+    text-transform: none;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-align: justify;
+    /* text-indent: 30px;  */
+}
 .single-objective-txt p {
     font-size: 16px;
     color: #999fb3;
@@ -891,6 +900,96 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
     white-space: pre-wrap;
     word-wrap: break-word;
 }
+/* GitHub Link Styling */
+.github-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.github-link i {
+    margin-right: 10px;
+    font-size: 24px;
+    color: #000;
+    transition: color 0.3s ease;
+}
+
+.github-link:hover {
+    color: #d92cf9; /* Matches project theme */
+}
+
+.github-link i:hover {
+    color: #d92cf9; /* Matches project theme */
+}
+
+/*--------------------------------------
+REFERENCE
+---------------------------------------*/
+/* References Section Styling */
+.references {
+    padding: 50px 0;
+    background-color: #f9f9f9;
+    border-top: 1px solid #e5ebf2;
+}
+
+.references .section-heading h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Initialize counter for the list */
+.references-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 auto;
+    max-width: 800px;
+    font-size: 16px;
+    line-height: 1.8;
+    counter-reset: list-counter; /* Initialize counter */
+}
+
+.references-list li {
+    margin-bottom: 15px;
+    padding-left: 25px;
+    position: relative;
+    color: #555;
+    counter-increment: list-counter; /* Increment counter for each <li> */
+}
+
+.references-list li:before {
+    content: counter(list-counter) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 600;
+    color: #d92cf9; /* Matches project theme */
+}
+
+.references-list li a {
+    text-decoration: none;
+    color: #0066cc;
+    transition: color 0.3s ease;
+}
+
+.references-list li a:hover {
+    color: #d92cf9;
+}
+
+.references-list li span {
+    color: #555;
+    font-weight: 500;
+}
+
 
 
 
